@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "StickyTab",
+  "version": "1.0",
+  "description": "탭별로 이름을 지정합니다. 같은 경로 안에서는 이름이 유지되고, 다른 경로로 이동하면 자동으로 초기화됩니다.",
+  "permissions": ["storage", "tabs", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "탭 이름 지정",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "commands": {
+    "rename-tab": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+E",
+        "mac": "Command+Shift+E"
+      },
+      "description": "현재 탭 이름 지정"
+    }
+  }
+}
