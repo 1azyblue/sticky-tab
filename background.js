@@ -17,17 +17,17 @@ async function setTabState(state) {
 }
 
 async function getUrlInfoMap() {
-  const { urlInfoMap } = await chrome.storage.session.get('urlInfoMap');
+  const { urlInfoMap } = await chrome.storage.local.get('urlInfoMap');
   return urlInfoMap || {};
 }
 
 async function setUrlInfoMap(map) {
-  await chrome.storage.session.set({ urlInfoMap: map });
+  await chrome.storage.local.set({ urlInfoMap: map });
 }
 
 async function ensureContentScript(tabId) {
   try {
-    await chrome.scripting.executeScript({ target: { tabId }, files: ['content.js'] });
+    await chrome.scripting.executeScript({ target: { tabId }, files: ['emoji-data.js', 'content.js'] });
   } catch {
     // chrome://, 웹 스토어 등 스크립트 주입이 불가능한 페이지
   }

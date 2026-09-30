@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <style>
     body {
-      width: 220px;
+      width: 240px;
       padding: 12px;
       font-family: sans-serif;
     }
@@ -12,6 +12,7 @@
       display: flex;
       gap: 6px;
       margin-bottom: 8px;
+      position: relative;
     }
     input {
       box-sizing: border-box;
@@ -23,6 +24,88 @@
       width: 40px;
       text-align: center;
       font-size: 15px;
+      cursor: pointer;
+      caret-color: transparent;
+    }
+    #iconInput::placeholder {
+      color: #999;
+    }
+    #clearIconBtn {
+      position: absolute;
+      top: -6px;
+      left: 30px;
+      width: 15px;
+      height: 15px;
+      line-height: 14px;
+      border-radius: 50%;
+      border: none;
+      background: #555;
+      color: #fff;
+      font-size: 10px;
+      padding: 0;
+      cursor: pointer;
+      text-align: center;
+      display: none;
+    }
+    #emojiPanel {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 4px;
+      z-index: 10;
+      background: #2a3040;
+      border-radius: 8px;
+      padding: 6px;
+      width: 216px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+    #emojiTabBar {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 6px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding-bottom: 6px;
+    }
+    #emojiTabBar button {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-size: 13px;
+      cursor: pointer;
+      border-radius: 4px;
+      padding: 4px 0;
+    }
+    #emojiTabBar button.active {
+      background: rgba(255, 255, 255, 0.15);
+    }
+    #emojiSearch {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 6px 8px;
+      margin-bottom: 6px;
+      border-radius: 6px;
+      border: none;
+      font-size: 12px;
+    }
+    #emojiGrid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 4px;
+      max-height: 180px;
+      overflow-y: auto;
+    }
+    #emojiGrid button {
+      width: 26px;
+      height: 26px;
+      padding: 0;
+      border: none;
+      background: transparent;
+      font-size: 15px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    #emojiGrid button:hover {
+      background: rgba(255, 255, 255, 0.15);
     }
     #nameInput {
       flex: 1;
@@ -53,11 +136,12 @@
 </head>
 <body>
   <div class="row">
-    <input id="iconInput" type="text" placeholder="🙂" maxlength="4" />
+    <input id="iconInput" type="text" placeholder="+" maxlength="4" readonly />
     <input id="nameInput" type="text" placeholder="탭 이름 입력" />
   </div>
   <button id="saveBtn">저장</button>
   <a id="helpLink" class="help-link">사용법 보기</a>
+  <script src="emoji-data.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>
